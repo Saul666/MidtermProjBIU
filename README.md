@@ -1,4 +1,4 @@
-markdown_content = """# Data Science Stock Correlation Pair Trading Strategy
+# Data Science Stock Correlation Pair Trading Strategy
 
 ## Team Members
 * **Idan Gilad**
