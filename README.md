@@ -68,3 +68,18 @@ Statistical arbitrage via pair trading remains a robust tool for downside protec
 ---
 
 ## 7. Repository Structure
+
+```text
+├── data/                  # Cached raw and cleaned CSV price data
+├── notebooks/             # Step-by-step exploratory analysis
+│   ├── 01_eda.ipynb
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_modeling.ipynb
+│   └── 04_model_evaluation.ipynb
+|   └── 05_regime_tracking.ipynbb
+|   └── 06_model_improvement.ipynb
+|   └── 07_feature_enrichment.ipynb
+├── src/                   # Production-ready modular source code
+├── requirements.txt       # requirement how to setup the project
+└── README.md              # Project overview and documentation
+```
