@@ -1,10 +1,10 @@
 # Data Dictionary: Stock Correlation Pair Strategy Project
 
-This document provides a comprehensive overview of the tables, schemas, and columns utilized across this project's quantitative pipeline. All raw market data is programmatically sourced from the **Yahoo Finance (YFinance) API**.
+All raw market data is programmatically sourced from the **Yahoo Finance (YFinance) API**.
 
 ---
 
-## Table 1: `raw_historical_prices`
+## Main Table downloaded from YFinance : `historical_prices`
 This dataset contains the daily historical market activity fetched directly from Yahoo Finance for the configured ticker universe.
 
 ### Column Definitions
