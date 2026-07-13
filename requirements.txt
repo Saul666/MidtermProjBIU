@@ -18,7 +18,15 @@
 
 # To run the end-to-end strategy, start the interactive colab notbooks in google colab ,
 # Once the notebook opens, simply run the very first code cell,
-# set up the directory paths, and install all required libraries (yfinance, statsmodels, etc.) straight into the Colab cloud environment. 
+# set up mounting : 
+#------------------------------
+# from google.colab import drive
+# drive.mount('/content/drive')
+#------------------------------
+# set up the directory paths:
+#-------------------------------
+# DATA_PATH = '/content/drive/MyDrive/Data Science/'
+#-------------------------------
 # From there, you can select Runtime > Run all from the top menu to view the complete pipeline execution and trading results.
 
 
