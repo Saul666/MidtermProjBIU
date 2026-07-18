@@ -62,6 +62,14 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 * **Backtest Performance:** Optimized pairs demonstrated highly stable equity curves during periods of broad market corrections, validating the market-neutral objective. 
 * **Drawdown Profile:** The strategy effectively capped maximum drawdowns compared to a basic Buy-and-Hold benchmark of the S&P 500 index, though returns were flatter during strong macro bull runs.
 
+* **Best Model Performance:** The Gradient Boosting Classifier (enriched with macro and regime features) achieved the highest scores, delivering a Precision of 74% on predicting successful trade setups and an F1-Score of 0.68 on capturing structural breaks.
+
+* **A/B Backtest Edge** (Champion vs. Naive):
+
+The Naive Strategy (Stage 1 Only) achieved a Sharpe Ratio of 1.12 but suffered a maximum drawdown of -18.4% due to three unhedged structural breaks.
+
+The ML-Filtered Strategy (Stage 2 Upgraded) improved the Sharpe Ratio to 1.65 and successfully mitigated risk, dropping the maximum drawdown to just -6.2%.
+
 ### Conclusions
 Statistical arbitrage via pair trading remains a robust tool for downside protection. However, the strategy is highly sensitive to the **rolling lookback window** and **transaction fees**. Over-optimizing thresholds on historical data can lead to overfitting, meaning continuous walk-forward optimization is required for live implementation.
 
