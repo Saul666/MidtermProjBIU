@@ -64,11 +64,12 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 
 * **Best Model Performance:** The Gradient Boosting Classifier (enriched with macro and regime features) achieved the highest scores, delivering a Precision of 74% on predicting successful trade setups and an F1-Score of 0.68 on capturing structural breaks.
 
-* **A/B Backtest Edge** (Champion vs. Naive):
-
+**ROI and A/B testing:**
 The Naive Strategy (Stage 1 Only) achieved a Sharpe Ratio of 1.12 but suffered a maximum drawdown of -18.4% due to three unhedged structural breaks.
 
 The ML-Filtered Strategy (Stage 2 Upgraded) improved the Sharpe Ratio to 1.65 and successfully mitigated risk, dropping the maximum drawdown to just -6.2%.
+
+* The Sharpe ratio measures an investment's return relative to its risk. It is calculated by subtracting the risk-free rate from the portfolio's return, then dividing by the standard deviation (volatility) of those returns. A ratio above 1.0 is generally considered good, while above 2.0 is excellent
 
 ### Conclusions
 Statistical arbitrage via pair trading remains a robust tool for downside protection. However, the strategy is highly sensitive to the **rolling lookback window** and **transaction fees**. Over-optimizing thresholds on historical data can lead to overfitting, meaning continuous walk-forward optimization is required for live implementation.
