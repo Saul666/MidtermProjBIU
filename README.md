@@ -7,7 +7,7 @@
 ---
 
 ## 1. Project Goal
-The primary goal of this project is to develop, backtest, and evaluate an automated algorithmic trading framework based on a **Statistical Arbitrage Pair Trading Strategy**. By leveraging historical stock price data, the system identifies pairs of equities that exhibit long-term equilibrium relationships, detects temporary price divergences, and executes mean-reverting trading signals to capture risk-adjusted alphas.
+The primary goal of this project is to develop, backtest, and evaluate a two-stage automated algorithmic trading framework that infuses classical Statistical Arbitrage with supervised machine learning. While the system leverages cointegration to identify asset pairs in long-term equilibrium and detect price divergences, it crucially implements a downstream Gradient Boosting classification layer. Enriched with regime-tracking market features, this ML layer acts as an predictive risk filter—identifying and suppressing catastrophic structural breaks to optimize risk-adjusted alpha and portfolio drawdown profiles.
 
 ## 2. Business Problem & Market Significance
 In highly volatile equity markets, traditional long-only investment strategies expose portfolios to significant systematic market risk (beta). When macroeconomic shocks occur, broad market declines can severely impact asset returns.
