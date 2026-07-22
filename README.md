@@ -50,7 +50,6 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 ### Modules Tested
 * `Data Acquisition & Cleaning Module`: Fetches multi-year tickers, checks for missing data, handles stock splits, and aligns timestamps across different assets.
 * `Statistical Cointegration Engine`: Iterates through an $N \times N$ matrix of selected assets, running pairwise ADF and Engle-Granger tests to filter out pseudo-correlated assets.
-* `Signal Generation & Thresholding Optimizer`: Tests different rolling lookback windows (e.g., 20-day vs. 60-day moving averages) and varying Z-score entry/exit thresholds to find optimal balances.
 * `Backtesting Engine & Metrics Calculator`: Simulates execution over historical unseen test windows, incorporating basic transaction costs, and computes final performance metrics.
 
 ---
