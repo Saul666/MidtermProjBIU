@@ -65,7 +65,12 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 
 ---
 
-## 7. Repository Structure
+## 7. Future Improvements
+
+* **Market friction:** there are broker fees and transaction cost that reduce profits the system will ne to handle this .
+
+
+## 8. Repository Structure
 
 ```text
 ├── data/                  # Cached raw and cleaned CSV price data
