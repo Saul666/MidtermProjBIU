@@ -65,6 +65,17 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 
 ---
 
+## ** ROI: ** 
+
+==========================================
+       STRATEGY PERFORMANCE SUMMARY       
+==========================================
+Total Strategy ROI:  52.23%
+Annualized Sharpe:   1.37
+Max Drawdown:        -46.99%
+Win Rate per Bar:    55.7%
+
+
 ## 7. Future Improvements
 
 * **Market friction:** there are broker fees and transaction cost that reduce profits the system will ne to handle this .
