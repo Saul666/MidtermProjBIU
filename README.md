@@ -65,7 +65,7 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 
 ---
 
-## 7. ** Return on investment : ** 
+## 7.  Return on investment :  
 
 Total Strategy ROI:  52.23%
 Annualized Sharpe:   1.37
