@@ -95,4 +95,3 @@ Win Rate per Bar:    55.7%
 └── README.md              # Project overview and documentation
 ```
 
-## 9. Slides : https://docs.google.com/presentation/d/15HbvO5P7w061gKXsZ-S9synWM3yXJP5e7KbXwlM8QK4/mobilepresent?slide=id.p1
