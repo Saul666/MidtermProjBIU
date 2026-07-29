@@ -23,6 +23,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
+from src import data
+
 from .config import CONFIG, sector_of, SECTORS
 from .features import (log_returns, spread_series, rolling_zscore,
                        rolling_corr, half_life, hurst, adf_stat)
@@ -40,10 +42,20 @@ def _sector_dispersion(rets: pd.DataFrame) -> dict:
 def _vix_series(prices, rets, context):
     """Real VIX (reindexed) if provided, else a realized-volatility proxy."""
     market_ret = rets.mean(axis=1)
+
     if context and context.get("vix") is not None:
-        vix = context["vix"].reindex(prices.index).ffill().bfill()
+        vix = context["vix"]
+
+        # yfinance may return VIX as a one-column DataFrame.
+        # Convert it to a numeric Series so each event receives a scalar value.
+        if isinstance(vix, pd.DataFrame):
+            vix = vix.iloc[:, 0]
+
+        vix = pd.to_numeric(vix, errors="coerce")
+        vix = vix.reindex(prices.index).ffill().bfill()
     else:
         vix = (market_ret.rolling(21).std() * np.sqrt(252) * 100).bfill()
+
     return vix, vix.diff(20)
 
 
@@ -52,7 +64,12 @@ def build_event_dataset(prices: pd.DataFrame, pairs: pd.DataFrame,
                         context: dict | None = None) -> pd.DataFrame:
     """Build the enriched event-level modeling table across all selected pairs."""
     cfg = cfg or CONFIG.signal
+
     rets = log_returns(prices).reindex(prices.index)
+
+    # Keep only tickers that actually downloaded successfully
+    rets = rets.loc[:, rets.columns.intersection(prices.columns)]
+
     logp = np.log(prices)
     market_vol = rets.mean(axis=1).rolling(21).std()
     sector_disp = _sector_dispersion(rets)
@@ -94,7 +111,8 @@ def build_event_dataset(prices: pd.DataFrame, pairs: pd.DataFrame,
         peers = [t for t in SECTORS if sector_of(t) == sec and t not in (leg, other)]
         if len(peers) < 2:
             return pd.Series(0.0, index=prices.index)
-        sm = rets[peers].mean(axis=1)
+        peers = [ticker for ticker in peers if ticker in rets.columns]
+        sm = rets[peers].mean(axis=1) if peers else pd.Series(0.0, index=rets.index)
         return rolling_corr(rets[leg], sm, bw) - rolling_corr(rets[leg], sm, cfg.z_window)
 
     rows = []
@@ -181,9 +199,21 @@ def build_event_dataset(prices: pd.DataFrame, pairs: pd.DataFrame,
     data = pd.DataFrame(rows)
     if data.empty:
         return data
-    for col in ["coint_recent_pvalue", "vol_ratio", "comembership", "vix_change", "vol_spike_max", "detach_max"]:
+
+    for col in [
+        "coint_recent_pvalue",
+        "vol_ratio",
+        "comembership",
+        "vix_change",
+        "vol_spike_max",
+        "detach_max",
+    ]:
         data[col] = data[col].fillna(data[col].median())
+
     return data.dropna().sort_values("date").reset_index(drop=True)
+
+
+
 
 
 def time_split(data: pd.DataFrame, test_fraction: float):
