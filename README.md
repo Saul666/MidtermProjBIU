@@ -63,22 +63,15 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 
 * **Best Model Performance:** The Gradient Boosting Classifier (enriched with macro and regime features) achieved the highest scores, delivering a RUC/AUC score of 0.56 on capturing structural breaks.
 
----
-
-## 7.  Return on investment :  
-
-Total Strategy ROI:  52.23%
-Annualized Sharpe:   1.37
-Max Drawdown:        -46.99%
-Win Rate per Bar:    55.7%
+--
 
 
-## 8. Future Improvements
+## 7. Future Improvements
 
 * **Market friction:** there are broker fees and transaction cost that reduce profits the system will ne to handle this .
 
 
-## 9. Repository Structure
+## 8. Repository Structure
 
 ```text
 ├── data/                  # Cached raw and cleaned CSV price data
