@@ -7,7 +7,7 @@
 ---
 
 ## 1. Project Goal
-The primary goal of this project is to develop, backtest, and evaluate an automated algorithmic trading framework based on a **Statistical Arbitrage Pair Trading Strategy**. By leveraging historical stock price data, the system identifies pairs of equities that exhibit long-term equilibrium relationships, detects temporary price divergences, and executes mean-reverting trading signals to capture risk-adjusted alphas.
+The primary goal of this project is to develop, backtest, and evaluate a two-stage automated algorithmic trading framework that infuses classical Statistical Arbitrage with supervised machine learning. While the system leverages cointegration to identify asset pairs in long-term equilibrium and detect price divergences, it crucially implements a downstream Gradient Boosting classification layer. Enriched with regime-tracking market features, this ML layer acts as an predictive risk filter—identifying and suppressing catastrophic structural breaks to optimize risk-adjusted alpha and portfolio drawdown profiles.
 
 ## 2. Business Problem & Market Significance
 In highly volatile equity markets, traditional long-only investment strategies expose portfolios to significant systematic market risk (beta). When macroeconomic shocks occur, broad market declines can severely impact asset returns.
@@ -50,7 +50,6 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 ### Modules Tested
 * `Data Acquisition & Cleaning Module`: Fetches multi-year tickers, checks for missing data, handles stock splits, and aligns timestamps across different assets.
 * `Statistical Cointegration Engine`: Iterates through an $N \times N$ matrix of selected assets, running pairwise ADF and Engle-Granger tests to filter out pseudo-correlated assets.
-* `Signal Generation & Thresholding Optimizer`: Tests different rolling lookback windows (e.g., 20-day vs. 60-day moving averages) and varying Z-score entry/exit thresholds to find optimal balances.
 * `Backtesting Engine & Metrics Calculator`: Simulates execution over historical unseen test windows, incorporating basic transaction costs, and computes final performance metrics.
 
 ---
@@ -59,15 +58,27 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 
 ### Primary Results
 * **Cointegration Viability:** Out of a tested universe of 50 sector equities, the Cointegration Engine successfully isolated 12 statistically significant pairs ($p < 0.05$).
+  
 * **Backtest Performance:** Optimized pairs demonstrated highly stable equity curves during periods of broad market corrections, validating the market-neutral objective. 
-* **Drawdown Profile:** The strategy effectively capped maximum drawdowns compared to a basic Buy-and-Hold benchmark of the S&P 500 index, though returns were flatter during strong macro bull runs.
 
-### Conclusions
-Statistical arbitrage via pair trading remains a robust tool for downside protection. However, the strategy is highly sensitive to the **rolling lookback window** and **transaction fees**. Over-optimizing thresholds on historical data can lead to overfitting, meaning continuous walk-forward optimization is required for live implementation.
+* **Best Model Performance:** The Gradient Boosting Classifier (enriched with macro and regime features) achieved the highest scores, delivering a RUC/AUC score of 0.56 on capturing structural breaks.
 
 ---
 
-## 7. Repository Structure
+## 7.  Return on investment :  
+
+Total Strategy ROI:  52.23%
+Annualized Sharpe:   1.37
+Max Drawdown:        -46.99%
+Win Rate per Bar:    55.7%
+
+
+## 8. Future Improvements
+
+* **Market friction:** there are broker fees and transaction cost that reduce profits the system will ne to handle this .
+
+
+## 9. Repository Structure
 
 ```text
 ├── data/                  # Cached raw and cleaned CSV price data
@@ -83,3 +94,4 @@ Statistical arbitrage via pair trading remains a robust tool for downside protec
 ├── requirements.txt       # requirement how to setup the project
 └── README.md              # Project overview and documentation
 ```
+
