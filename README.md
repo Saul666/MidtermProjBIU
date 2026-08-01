@@ -57,7 +57,7 @@ The pipeline was developed modularly to isolate data processing, mathematical ve
 ## 6. Primary Results & Conclusions
 
 ### Primary Results
-* **Cointegration Viability:** Out of a tested universe of 50 sector equities, the Cointegration Engine successfully isolated 12 statistically significant pairs ($p < 0.05$).
+* **Cointegration Viability:** Out of a tested universe of 200 sector equities, the Cointegration Engine successfully isolated 50 statistically significant pairs ($p < 0.05$).
   
 * **Backtest Performance:** Optimized pairs demonstrated highly stable equity curves during periods of broad market corrections, validating the market-neutral objective. 
 
